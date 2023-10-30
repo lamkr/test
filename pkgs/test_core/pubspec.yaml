@@ -32,3 +32,8 @@ dependencies:
 
 dev_dependencies:
   dart_flutter_team_lints: ^2.1.1
+
+#LB
+#dependency_overrides:
+#  test_api:
+#    path: ../test_api

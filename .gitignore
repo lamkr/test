@@ -2,6 +2,7 @@
 .buildlog
 .dart_tool/
 .pub/
+.idea/
 build/
 packages
 

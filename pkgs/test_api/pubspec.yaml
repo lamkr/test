@@ -18,12 +18,29 @@ dependencies:
   string_scanner: ^1.1.0
   term_glyph: ^1.2.0
 
+  #LB
+  gherkin:
+    path: /home/luciano/projects/lamkr/cucumber/gherkin/dart
+  #path: ^1.8.3
+
 dev_dependencies:
   analyzer: '>=2.1.0 <7.0.0'
   dart_flutter_team_lints: ^1.0.0
   fake_async: ^1.2.0
+  file: ^6.1.4
   glob: ^2.0.0
   graphs: ^2.0.0
   path: ^1.8.0
   test: any
   test_core: any
+  
+  #LB
+  #lints: '>=3.0.0 <4.0.0'
+
+#LB
+dependency_overrides:
+  test:
+    path: ../test
+  test_core:
+    path: ../test_core
+#
