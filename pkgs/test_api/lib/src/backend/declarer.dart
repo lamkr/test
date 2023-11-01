@@ -388,6 +388,66 @@ class Declarer {
     }
     _entries.add(entry);
   }
+
+  // Gherkin routines
+
+  /// Defines a test case with the given name and body.
+  void given(String name, dynamic Function(List<dynamic>) body,
+      {String? testOn,
+        Timeout? timeout,
+        Object? skip,
+        Map<String, dynamic>? onPlatform,
+        Object? tags,
+        int? retry,
+        bool solo = false}) {
+    _checkNotBuilt('given');
+
+    final fullName = _prefix(name);
+    if (_fullTestName != null && fullName != _fullTestName) {
+      return;
+    }
+
+    var newMetadata = Metadata.parse(
+        testOn: testOn,
+        timeout: timeout,
+        skip: skip,
+        onPlatform: onPlatform,
+        tags: tags,
+        retry: _noRetry ? 0 : retry);
+    newMetadata.validatePlatformSelectors(_platformVariables);
+    var metadata = _metadata.merge(newMetadata);
+    _addEntry(LocalTest(fullName, metadata, () async {
+      var parents = <Declarer>[];
+      for (Declarer? declarer = this;
+      declarer != null;
+      declarer = declarer._parent) {
+        parents.add(declarer);
+      }
+
+      // Register all tear-down functions in all declarers. Iterate through
+      // parents outside-in so that the Invoker gets the functions in the order
+      // they were declared in source.
+      for (var declarer in parents.reversed) {
+        for (var tearDown in declarer._tearDowns) {
+          Invoker.current!.addTearDown(tearDown);
+        }
+      }
+
+      final args = []; // TODO To be implemented.
+
+      await runZoned(() async {
+        await _runSetUps();
+        await body(args);
+      },
+          // Make the declarer visible to running tests so that they'll throw
+          // useful errors when calling `test()` and `group()` within a test.
+          zoneValues: {#test.declarer: this});
+    }, trace: _collectTraces ? Trace.current(2) : null, guarded: false));
+
+    if (solo) {
+      _soloEntries.add(_entries.last);
+    }
+  }
 }
 
 /// An exception thrown when two test cases in the same test suite (same `main`)

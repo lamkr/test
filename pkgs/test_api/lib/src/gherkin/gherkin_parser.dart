@@ -6,7 +6,7 @@ import 'package:gherkin/helpers.dart';
 import 'package:gherkin/language.dart';
 import 'package:gherkin/parser.dart';
 import 'package:gherkin/tokens.dart';
-import 'package:path/path.dart';
+import 'package:path/path.dart' show join;
 
 class GherkinParser
 {
@@ -112,7 +112,7 @@ class GherkinParser
   }
 
   ValueInStep _extractValue(String stepDescription, MapEntry<String,String> syntax) {
-    int index = stepDescription.indexOf(syntax.key);
+    final index = stepDescription.indexOf(syntax.key);
     if( index > -1 ) {
       stepDescription = stepDescription.substring(index);
     }

@@ -287,3 +287,55 @@ void setUpAll(dynamic Function() callback) => _declarer.setUpAll(callback);
 /// prohibitively slow.
 void tearDownAll(dynamic Function() callback) =>
     _declarer.tearDownAll(callback);
+
+// Gherkin routines ---
+
+@isTest
+void given(Object? description, dynamic Function(List<dynamic>) body,
+    {String? testOn,
+      Timeout? timeout,
+      Object? skip,
+      Object? tags,
+      Map<String, dynamic>? onPlatform,
+      int? retry,
+      @Deprecated('Debug only') bool solo = false}) {
+  _declarer.given(description.toString(), body,
+      testOn: testOn,
+      timeout: timeout,
+      skip: skip,
+      onPlatform: onPlatform,
+      tags: tags,
+      retry: retry,
+      solo: solo);
+
+  // Force dart2js not to inline this function. We need it to be separate from
+  // `main()` in JS stack traces in order to properly determine the line and
+  // column where the test was defined. See sdk#26705.
+  return;
+  return; // ignore: dead_code
+}
+
+@isTest
+void when(Object? description, dynamic Function(List<dynamic>) body,
+    {String? testOn,
+      Timeout? timeout,
+      Object? skip,
+      Object? tags,
+      Map<String, dynamic>? onPlatform,
+      int? retry,
+      @Deprecated('Debug only') bool solo = false}) {
+  throw UnimplementedError();
+}
+
+@isTest
+void then(Object? description, dynamic Function(List<dynamic>) body,
+    {String? testOn,
+      Timeout? timeout,
+      Object? skip,
+      Object? tags,
+      Map<String, dynamic>? onPlatform,
+      int? retry,
+      @Deprecated('Debug only') bool solo = false}) {
+  throw UnimplementedError();
+}
+

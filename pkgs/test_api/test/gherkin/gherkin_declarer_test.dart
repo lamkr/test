@@ -7,13 +7,13 @@ import 'dart:io';
 
 import 'package:file/memory.dart';
 import 'package:path/path.dart' as p;
+import 'package:test/gherkin.dart';
 import 'package:test/test.dart';
 import 'package:test_api/src/backend/group.dart';
 import 'package:test_api/src/backend/suite.dart';
 import 'package:test_api/src/backend/test.dart';
-import 'package:test_core/gherkin.dart';
 
-import 'utils.dart';
+import '../utils.dart';
 
 late Suite _suite;
 

@@ -13,7 +13,7 @@ import 'package:test_api/src/backend/suite.dart';
 import 'package:test_api/src/backend/test.dart';
 import 'package:test_api/src/gherkin/gherkin_parser.dart';
 
-import 'utils.dart';
+import '../utils.dart';
 
 late Suite _suite;
 

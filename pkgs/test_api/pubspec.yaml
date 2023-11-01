@@ -21,7 +21,7 @@ dependencies:
   #LB
   gherkin:
     path: /home/luciano/projects/lamkr/cucumber/gherkin/dart
-  #path: ^1.8.3
+  path: ^1.8.3
 
 dev_dependencies:
   analyzer: '>=2.1.0 <7.0.0'
@@ -30,7 +30,6 @@ dev_dependencies:
   file: ^6.1.4
   glob: ^2.0.0
   graphs: ^2.0.0
-  path: ^1.8.0
   test: any
   test_core: any
   
