@@ -12,14 +12,14 @@ void main() {
     calculator = Calculator();
   });
 
-  /*when('I add 1 and 1', (args) {
+  when('I add {int} and {int}', (args) {
     calculator.sum(args[0] as int);
     calculator.sum(args[1] as int);
   });
 
-  then('the sum should be 2', (args) {
+  then('the sum should be {int}', (args) {
     expect(calculator.result, args[0]);
-  });*/
+  });
 
   test('Faz nada, apenas para referência', () {
     expect(true, isTrue);

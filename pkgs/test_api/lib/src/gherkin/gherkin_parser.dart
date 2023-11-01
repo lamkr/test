@@ -105,6 +105,11 @@ class GherkinParser
   }
 
   void _extractArgs(String stepToken, String stepDescription) {
+    const syntaxes = <String,String>{
+      '{int}': r'\d+',
+      '{double}': r'[\d]*\.?[\d]+(e[-+][\d]+)?',
+      '{string}': '".*?"|\'.*?\''
+    };
     for( var syntax in syntaxes.entries ) {
       final valueInStep = _extractValue( stepDescription, syntax );
       print(valueInStep);
